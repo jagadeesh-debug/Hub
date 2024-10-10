@@ -3,10 +3,10 @@
 ## Components
 
 - **Navbar**
-- **Home**
-- **How We Work**
-- **Book Your Slot**
-- **Account**
+   - **Home**
+   - **How We Work**
+   - **Book Your Slot**
+   - **Account**
 ## Features
 - **How We Work**
    - GIF for recycle
