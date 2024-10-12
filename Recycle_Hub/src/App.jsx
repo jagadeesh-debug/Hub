@@ -13,8 +13,8 @@ function App() {
     <div >
       {/* <Nav/>
       <Home/> */}
-      {/* <Login/> */}
-      <SignUp/>
+      <Login/>
+      {/* <SignUp/> */}
     </div>
   )
 }
