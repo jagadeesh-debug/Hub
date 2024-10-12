@@ -13,8 +13,8 @@ export default function Home(){
             <button className="w-1/6 h-12 border border-black flex-grow hover:cursor rounded-lg hover:bg-green-400 hover:text-black font-medium">Agent</button>
             </div>
             </div>
-            <div className="gif  border-black border h-1/2 md:w-1/2 rounded-md mt-2">
-            <video className="w-full h-full " controls>
+            <div className=" h-1/2 md:w-1/2 border border-black rounded-md mt-2 flex justify-center items-center bg-gray-300">
+            <video className=" " controls>
                 <source src="src/recycle_hub.mp4" type="video/mp4"/>
             </video>
             </div>
