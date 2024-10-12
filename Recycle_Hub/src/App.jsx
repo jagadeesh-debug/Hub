@@ -5,14 +5,16 @@ import './App.css'
 import Nav from './navBar'
 import Login from './person_login'
 import Home from './home'
+import SignUp from './person_signUp'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='w-full h-full'>
-      <Nav/>
-      <Home/>
-      <Login/>
+    <div >
+      {/* <Nav/>
+      <Home/> */}
+      {/* <Login/> */}
+      <SignUp/>
     </div>
   )
 }
