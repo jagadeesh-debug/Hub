@@ -9,12 +9,12 @@ export default function Home(){
             <p className="text-lg lg:text-md text-wrap text-start md:py-2 lg:py-4 italic font-medium">We collect from homes, councils, and businesses, connecting items with our reuse and recycling partners.</p>
 
             <div className="h-1/4 w-full gap-x-2 flex  ">
-            <button className="w-1/6 h-12 border border-black flex-grow hover:cursor rounded-lg hover:bg-green-400 hover:text-black font-medium">Individual</button>
+            <button className="w-1/6 h-12 border border-black flex-grow hover:cursor rounded-lg hover:bg-green-400 hover:text-black font-medium">User</button>
             <button className="w-1/6 h-12 border border-black flex-grow hover:cursor rounded-lg hover:bg-green-400 hover:text-black font-medium">Agent</button>
             </div>
             </div>
             <div className=" h-1/2 md:w-1/2 border border-black rounded-md mt-2 flex justify-center items-center bg-gray-300">
-            <video className=" " controls>
+            <video className="h-full  rounded-md " controls >
                 <source src="src/recycle_hub.mp4" type="video/mp4"/>
             </video>
             </div>
