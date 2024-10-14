@@ -1,6 +1,11 @@
+
+import React from "react";
+import SignUp from "./person_signUp";
+import {  Link } from "react-router-dom";
+
 export default function Login() {
     return (
-        <div className="flex justify-center items-center md:justify-center md:items-center      md:mt-32 ">
+        <div className="flex justify-center items-center md:justify-center md:items-center   ">
             <div className="flex flex-col  md:w-1/2 px-4 py-4 space-y-8 items-center">
                 <h1 className="text-2xl md:text-5xl text-green-400" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Login Here</h1>
                 <div className="w-full md:w-2/3 xl:w-1/2 flex relative">
@@ -10,7 +15,8 @@ export default function Login() {
                 <button id="login" className="text-xl bg-green-400  md:w-1/4 rounded-md p-1 font-bold">Log In</button>
                 <div className="flex justify-between md:justify-between w-full md:w-2/3 xl:w-1/2">
                     <a className="text-sm xl:text-md" href="#">Forgot Password</a>
-                    <a className="text-sm xl:text-md" href="#">New User?</a>
+                    <Link to="/signup" className="text-sm xl:text-md">New User?
+                    </Link>
                 </div>
                 <div className="w-full md:w-1/2 flex items-center">
                     <hr className="border border-black flex-grow"></hr>

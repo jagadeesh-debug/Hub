@@ -6,7 +6,7 @@ export default function User_acc() {
         <div className="h-screen  flex flex-col items-center ">
             <div className="= h-1/4 w-full md:w-1/2  mt-4 flex  md:justify-evenly">
                 <div className=" w-2/3    md:w-1/2 lg:w-1/3 flex  justify-center items-center">
-                    <img className="border border-black w-3/4  h-3/5 md:h-3/4 md:w-3/4 lg:w-3/5 rounded-full md:m-3 lg:m-4 " /></div>
+                    <img className="border border-black w-3/4  h-3/5 md:h-3/4 md:w-3/4 lg:w-3/5 lg:h-2/3 rounded-full md:m-3 lg:m-4 " /></div>
                 <div className="= w-5/6 md:w-1/2 flex flex-col items-center justify-center">
                     <div className="  text-orange-400 md:text-xl lg:text-2xl" id="userAccName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Hello Ramanujan010</div>
                     <div className="  text-black-400 md:text-md lg:text-xl" id="userName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Ramanujan</div>
