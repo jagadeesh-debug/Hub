@@ -19,3 +19,19 @@
     - User Profile Space
   - Agent
     - Agent Profile Space
+## Account Details
+- **User**
+   - profile(IMG)
+   - User Name
+   - User EmailID
+   - User Mob Number
+   - User Passkey
+   - Orders
+- **Agent**
+   - pofile(IMG)
+   - Agent Id (number)
+   - Agent Name
+   - Agent Email ID
+   - Agent Mob Mumber
+   - Agent Passkey
+   - orders
