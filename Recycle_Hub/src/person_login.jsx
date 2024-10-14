@@ -1,6 +1,6 @@
 export default function Login() {
     return (
-        <div className="flex justify-center items-center      md:mt-32 ">
+        <div className="flex justify-center items-center md:justify-center md:items-center      md:mt-32 ">
             <div className="flex flex-col  md:w-1/2 px-4 py-4 space-y-8 items-center">
                 <h1 className="text-2xl md:text-5xl text-green-400" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Login Here</h1>
                 <div className="w-full md:w-2/3 xl:w-1/2 flex relative">

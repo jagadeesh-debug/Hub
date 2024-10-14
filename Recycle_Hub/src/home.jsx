@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Home(){
     return (
-        <div className="flex flex-col  md:flex-row justify-between h-screen mt-12 md:mt-32">
+        <div className="flex flex-col h-screen md:flex-row justify-between  mt-12 md:mt-32">
             <div className="text border-black border lg:justify-center  h-1/2 md:w-1/3 rounded-md px-4 py-4 space-y-8 md:space-y-4 lg:space-y-8 lg:py-12">
             <h1 className="text-3xl md:text-3xl font-bold text-balance md:text-wrap text-start" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>A second life to almost everything</h1>
             <p className="text-lg lg:text-md text-wrap text-start md:py-2 lg:py-4 italic font-medium">We collect from homes, councils, and businesses, connecting items with our reuse and recycling partners.</p>
