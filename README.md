@@ -1,7 +1,7 @@
 # Recycle Hub
 
 ## Components
-
+- **Landing Page**
 - **Navbar**
    - **Home**
    - **How We Work**
@@ -35,3 +35,12 @@
    - Agent Mob Mumber
    - Agent Passkey
    - orders
+  -- max frontend completed for user side --
+
+## Backend
+- **Authenication**
+- user
+  - collecting user details and display their details in about
+- agent
+   - collect agent details and based on location search of user we shoe the agent profiles
+- **Map feature**
