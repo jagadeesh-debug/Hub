@@ -6,11 +6,13 @@ import Home from './home'
 import SignUp from './person_signUp'
 import SlotBook from './book_the_slot'
 import User_acc from './User_Account'
+import Typewriter from 'typewriter-effect'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className=' '>
+    <div className=' '> 
       <Nav/>
       {/* <Home/> */}
       {/* <Login/> */}

@@ -3,7 +3,7 @@ import { useState,useRef } from "react";
 
 export default function SignUp(){
     return (
-        <div className="flex justify-center items-center  ">
+        <div className="flex h-screen justify-center items-center  ">
         <div className="flex flex-col md:w-1/2 px-4 py-4 space-y-8 items-center">
             <h1 className="  text-2xl md:text-5xl text-green-400  " style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Sign Up Here</h1>
             <div className="w-full md:w-1/2 flex relative">
