@@ -5,8 +5,8 @@ export default function User_acc() {
     return (
         <div className="h-screen  flex flex-col items-center ">
             <div className="= h-1/4 w-full md:w-1/2  md:mt-4 flex  md:justify-evenly">
-                <div className=" w-2/3    md:w-1/2 lg:w-1/3 flex  justify-center items-center">
-                    <img className="border border-black aspect-square  rounded-full md:m-3 lg:m-4  "  src="./src/assets/rec.jpg"/></div>
+                <div className=" w-2/3 md:w-1/2 lg:w-1/3 flex  justify-center items-center">
+                    <img className="border border-black aspect-square  rounded-full  w-5/6"  src="./src/assets/sin.jpg"/></div>
                 <div className="= w-5/6 md:w-1/2 flex flex-col items-center justify-center">
                     <div className="  text-orange-400 md:text-xl lg:text-2xl" id="userAccName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Hello Ramanujan010</div>
                     <div className="  text-black-400 md:text-md lg:text-xl" id="userName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Ramanujan</div>
