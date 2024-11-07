@@ -1,16 +1,12 @@
-import { useState } from 'react'
 import './App.css'
-import Nav from './navBar'
-import Login from './person_login'
-import Home from './home'
-import SignUp from './person_signUp'
-import SlotBook from './book_the_slot'
-import User_acc from './User_Account'
-import Typewriter from 'typewriter-effect'
+import Nav from "./components/navBar.jsx";
+import Login from "./components/person_login";
+import Home from './components/home'
+import SignUp from './components/person_signUp'
+import SlotBook from './components/book_the_slot'
+import User_acc from './components/User_Account'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
      
       <BrowserRouter>
