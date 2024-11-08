@@ -1,27 +1,60 @@
 import React from "react";
-import { useState, useRef } from "react";
-
+import { useState, useRef,useEffect } from "react";
+import {db, auth} from "../Backend/firebaseconfig";
+import { getDoc, doc, setDoc, getFirestore } from "firebase/firestore";
 export default function User_acc() {
+    const [mobile, setMobile] = useState("");
+
+    const db = getFirestore();
+    const updateMobile=async (e)=>{
+        e.preventDefault();
+        
+       useEffect(() => {
+        const user = auth.currentUser;
+        if(!user){
+            console.log("User not found");
+            return ;
+        }
+        try{
+            const userDocRef = doc(db, "users", user.uid);
+            const existingUser =  getDoc(userDocRef);
+            if (existingUser.exists()) {
+                const data = existingUser.data();
+                setMobile(data.mobile);
+            }
+            else{
+                window.alert("User not found in Firestore.");
+            }
+
+        }
+        catch(error){
+            console.error("Error in getting user data:", error);
+        }
+        updateMobile();
+    }, []);
+    }    
+
+
     return (
         <div className="h-screen  flex flex-col items-center ">
             <div className="= h-1/4 w-full md:w-1/2  md:mt-4 flex  md:justify-evenly">
-                <div className=" w-2/3 md:w-1/2 lg:w-1/3 flex  justify-center items-center">
-                    <img className="border border-black aspect-square  rounded-full  w-5/6"  src="./src/assets/sin.jpg"/></div>
-                <div className="= w-5/6 md:w-1/2 flex flex-col items-center justify-center">
+                    <div className=" w-2/3 md:w-1/2 lg:w-1/3 flex  justify-center items-center">
+                        <img className="border border-black aspect-square  rounded-full  w-2/3 sm:w-1/2 md:w-3/4"  src="./src/assets/sin.jpg"/></div>
+                    <div className="= w-5/6 md:w-1/2 flex flex-col items-center justify-center">
                     <div className="  text-orange-400 md:text-xl lg:text-2xl" id="userAccName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Hello Ramanujan010</div>
                     <div className="  text-black-400 md:text-md lg:text-xl" id="userName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Ramanujan</div>
                     <div className="flex = mt-2 w-full h-1/3  items-center justify-evenly">
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center cursor-pointer">
                             <i class='bx bxs-package text-xl md:text-xl lg:text-3xl '></i>
                             <h2 className="text-sm ">Orders</h2>
                         </div>
 
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center cursor-pointer">
                             <i class='bx bxs-wallet-alt text-xl md:text-xl lg:text-3xl'></i>
                             <h2 className="text-sm ">Wallet</h2>
                         </div>
 
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center cursor-pointer">
                             <i class='bx bx-qr text-xl md:text-xl lg:text-3xl '></i>
                             <h2 className="text-sm ">scanner</h2>
                         </div>
@@ -39,8 +72,8 @@ export default function User_acc() {
                 </div>
                 <div className="flex  h-1/6 justify-around items-center" id="details">
                     <div className="flex flex-col w-full md:w-1/2">
-                        <h2 className="text-xl " style={{ fontFamily: 'Bagel Fat One, sans-serif' }} >Mobile</h2>
-                        <p className="text-xl font-semibold">7093608328</p>
+                        <h2 className="text-xl " style={{ fontFamily: 'Bagel Fat One, sans-serif' }} ></h2>
+                        <p className="text-xl font-semibold">{mobile}</p>
                     </div>
                     <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md "><i class='bx bx-edit' ></i></button>
                 </div>

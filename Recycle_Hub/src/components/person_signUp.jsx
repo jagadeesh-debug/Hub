@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore"; // Make sure to import Firestore functions
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"; // Make sure to import Firestore functions
 import { auth } from "../Backend/firebaseconfig"; // Import auth from firebaseconfig
 
 export default function SignUp() {
@@ -36,7 +36,11 @@ export default function SignUp() {
             // Create user with email and password
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-
+            const userDocRef = doc(db, "users", user.uid);
+            const existingUser = await getDoc(userDocRef);
+            if (existingUser.exists()) {
+                setError("User already exists");
+            } else {
             // Save user data in Firestore
             await setDoc(doc(db, "users", user.uid), {
                 email: email,
@@ -48,10 +52,14 @@ export default function SignUp() {
             setEmail("");
             setPassword("");    
             setMobile("");  
+        }
+
+
         } catch (err) {
             console.log("Error in creating user:", err);
             setError(err.message);
         }
+
     };
 
     return (
@@ -104,6 +112,9 @@ export default function SignUp() {
                     Sign Up
                 </button>
 
+                {error && <div className="text-red-500">{error}</div>}  
+                {/* {message && <div className="text-green-500">{message}</div>} */}
+                
                 <div className="w-full md:w-1/2 flex items-center">
                     <hr className="border border-black flex-grow" />
                     <h2 className="text-md px-2">Or</h2>
