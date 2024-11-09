@@ -31,7 +31,7 @@ export default function Nav() {
                 </nav>
 
                 <Link to="Login">
-                    <button className="bg-green-400 rounded-md w-1/3 text-sm md:text-xl md:w-full text-nowrap py-1 px-2 hover:bg-green-300 hidden md:block">Get Started</button>
+                    <button className="bg-green-400 rounded-md w-1/3 text-sm md:text-xl md:w-full text-nowrap py-1 px-2 hover:bg-green-300 hidden md:block">Log Out</button>
                 </Link>
 
                 {/* toggling button for menu view in mobile */}

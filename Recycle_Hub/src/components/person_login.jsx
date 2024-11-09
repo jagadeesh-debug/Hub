@@ -18,7 +18,7 @@ export default function Login() {
       const userDoc = await getDoc(doc(db, "users", user.uid));
 
       if (userDoc.exists) {
-        console.log(userDoc.data());
+        window.location = '/home'; //After successful login, user will be redirected to home.html
       } else {
         setError("User not found in Firestore.");
       }
