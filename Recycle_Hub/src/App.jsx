@@ -30,11 +30,12 @@ function App() {
 
     return (
         <BrowserRouter>
+        <Nav/>
             <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to='/' />} />
+                <Route path="landing" element={<Landing />} />
+                <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to='/home' />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={isLoggedIn ? <SignUp /> : <Navigate to='/login' />} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="/bys" element={isLoggedIn ? <SlotBook /> : <Navigate to='/login' />} />
                 <Route path="/user-acc" element={isLoggedIn ? <User_acc /> : <Navigate to='/login' />} />
             </Routes>
