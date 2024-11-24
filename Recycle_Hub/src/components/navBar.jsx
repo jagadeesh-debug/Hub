@@ -12,9 +12,8 @@ export default function Nav() {
     };
 
     function logout() {
-        const auth = getAuth();
         auth.signOut().then(() => {
-            navigate("/landing");
+            navigate("/");
         }).catch((error) => {
             console.error("Error signing out: ", error);
         });

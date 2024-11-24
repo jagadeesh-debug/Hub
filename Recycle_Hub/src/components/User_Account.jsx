@@ -8,30 +8,6 @@ export default function User_acc() {
     const db = getFirestore();
     const updateMobile=async (e)=>{
         e.preventDefault();
-        
-       useEffect(() => {
-        const user = auth.currentUser;
-        if(!user){
-            console.log("User not found");
-            return ;
-        }
-        try{
-            const userDocRef = doc(db, "users", user.uid);
-            const existingUser =  getDoc(userDocRef);
-            if (existingUser.exists()) {
-                const data = existingUser.data();
-                setMobile(data.mobile);
-            }
-            else{
-                window.alert("User not found in Firestore.");
-            }
-
-        }
-        catch(error){
-            console.error("Error in getting user data:", error);
-        }
-        updateMobile();
-    }, []);
     }    
 
 

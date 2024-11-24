@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../Backend/firebaseconfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { getDoc,doc } from "firebase/firestore";
@@ -9,6 +9,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); 
 
+  const navigate = useNavigate();
+
   const login = async (e) => {
     e.preventDefault();
     try {
@@ -16,9 +18,10 @@ export default function Login() {
       const user = userCredential.user;
 
       const userDoc = await getDoc(doc(db, "users", user.uid));
-
+        navigate('/home'); //After successful login, user will be redirected to home page
       if (userDoc.exists) {
-        window.location = '/home'; //After successful login, user will be redirected to home.html
+        navigate('/home');
+        // window.location = '/home'; //After successful login, user will be redirected to home.html
       } else {
         setError("User not found in Firestore.");
       }
@@ -28,7 +31,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center md:justify-center md:items-center">
+    <div className="flex justify-center items-center md:justify-center md:items-center min-h-screen">
       <div className="flex flex-col md:w-1/2 px-4 py-4 space-y-8 items-center">
         <h1 className="text-2xl md:text-5xl text-green-400" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>
           Login Here

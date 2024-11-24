@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 
+.get_started {
+    background: linear-gradient(60deg, transparent 50%, rgb(48, 238, 48) 50%);
+    background-size: 300% 100%;
+    background-position: bottom left;
+    transition: background-position 1s ease, background-color 1s ease;
+}
 
-   
+.get_started:hover{
+    background-position: right bottom;
+}
 
