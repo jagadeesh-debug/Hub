@@ -46,7 +46,7 @@
 - **Map feature**
 ## user
 - **user details**
-  -dynamic rendering
-  -dynamic editing
-  -ip address tracking upon request booking
+    - dynamic rendering
+    - dynamic editing
+    - ip address tracking upon request booking
   
