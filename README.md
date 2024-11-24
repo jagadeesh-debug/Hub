@@ -44,3 +44,9 @@
 - agent
    - collect agent details and based on location search of user we shoe the agent profiles
 - **Map feature**
+## user
+- **user details**
+  -dynamic rendering
+  -dynamic editing
+  -ip address tracking upon request booking
+  
