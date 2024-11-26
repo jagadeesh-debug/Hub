@@ -7,6 +7,7 @@ export default function User_acc() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
+    const [image,setImage]  = useState("");
     const db = getFirestore(); 
    
     const handleEditName= async () => {
@@ -17,7 +18,10 @@ export default function User_acc() {
             await setDoc(userDoc, { name: newName }, { merge: true });
         }
     };
+    // const upload_image = async=()=>{
+    //     const profile_image = 
 
+    // }
     const handleEditMobile = async () => {
         const newMobile = prompt("Enter new mobile number:");
         if (newMobile) {
@@ -51,17 +55,34 @@ export default function User_acc() {
                 setMobile(docSnap.data().mobile);
                 setEmail(docSnap.data().email);
                 setAddress(docSnap.data().address); 
+                setImage(docSnap.data().image);
             }
         };
         fetchUserData();
     }, []);
 
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                setImage(reader.result);
+                const userDoc = doc(db, "users", auth.currentUser.uid);
+                await setDoc(userDoc, { image: reader.result }, { merge: true });        // You can also upload the image to your backend here
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className="h-screen flex flex-col items-center">
             <div className=" w-full md:w-1/2 md:mt-4 flex md:justify-evenly">
                 <div className="w-2/3 md:w-1/2 lg:w-1/3 flex justify-center items-center relative border">
-                    <img className="border border-black aspect-square relative rounded-full w-1/2 md:w-2/3 z-0 object-cover" src="./src/assets/sin.jpg" alt="User" />
-                    <i className='bx bx-edit  text-2xl md:text-3xl text-green-500 absolute bottom-2 md:bottom-5 right-12 z-2'></i>
+                    <img className="border border-black aspect-square relative rounded-full w-1/2 md:w-2/3 z-0 object-cover" src={image } alt="User" />
+                    <button className="absolute bottom-2 md:bottom-5 right-12 z-2 cursor-pointer">
+                        <i className='bx bx-edit text-2xl md:text-3xl text-green-500 cursor-pointer'></i>
+                        <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleImageChange} />
+                    </button>
                 </div>
                 <div className="w-5/6 md:w-1/2 flex flex-col items-center justify-center">
                     <div className="text-orange-400 md:text-xl lg:text-2xl" id="userAccName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Hello {name}</div>
