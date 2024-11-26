@@ -18,7 +18,6 @@ export default function Login() {
       const user = userCredential.user;
 
       const userDoc = await getDoc(doc(db, "users", user.uid));
-        navigate('/home'); //After successful login, user will be redirected to home page
       if (userDoc.exists) {
         navigate('/home');
         // window.location = '/home'; //After successful login, user will be redirected to home.html
@@ -29,6 +28,30 @@ export default function Login() {
       setError(err.message); 
     }
   };
+
+// code for visibility of password
+  React.useEffect(() => {
+    const password_visible = document.getElementById('password_visible');
+
+    const togglePasswordVisibility = () => {
+      const password = document.getElementById('password');
+      if (password.type === 'password') {
+        password.type = 'text';
+        password_visible.classList.remove('bx-show');
+        password_visible.classList.add('bx-hide');
+      } else {
+        password.type = 'password';
+        password_visible.classList.remove('bx-hide');
+        password_visible.classList.add('bx-show');
+      }
+    };
+
+    password_visible.addEventListener('click', togglePasswordVisibility);
+
+    return () => {
+      password_visible.removeEventListener('click', togglePasswordVisibility);
+    };
+  }, []);
 
   return (
     <div className="flex justify-center items-center md:justify-center md:items-center min-h-screen">
@@ -51,18 +74,20 @@ export default function Login() {
         </div>
 
         {/* Password Input */}
+        <div className="w-full md:w-2/3 xl:w-1/2 flex relative">
         <input
           id="password"
           type="password"
           placeholder="Bhrama@0"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border border-black w-full md:px-4 py-2 md:w-2/3 xl:w-1/2 rounded-md"
+          className="border  border-black w-full md:px-4 py-2  rounded-md"
         />
-
+        <i className='bx bx-show absolute top-1 right-2 text-2xl font-bold text-green-400 cursor-pointer' id="password_visible"></i>
+      </div>
         {/* Login Button */}
         <button
-          id="login"
+          id="login_button"
           className="text-xl bg-green-400 md:w-1/4 rounded-md p-1 font-bold"
           onClick={login}
         >
