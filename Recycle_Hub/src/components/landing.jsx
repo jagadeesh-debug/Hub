@@ -69,7 +69,7 @@ return (
             </div>
                
         <div className="flex justify-center mt-12 border w-1/4 md:w-1/6 rounded-md border-black get_started">
-        <Link to="/login">
+        <Link to="/user_agent">
             <button className="md:text-2xl text-md">Get Started</button>
         </Link>
         </div>

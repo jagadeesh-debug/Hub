@@ -10,6 +10,8 @@ import { auth } from './Backend/firebaseconfig'; // Ensure this import is correc
 import { getFirestore } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import Landing from './components/landing.jsx';
+import Person_or_Agent from './components/Person_or_Agent.login.jsx';
+import LoadingScreen from './components/loading_screen.jsx';
 
 function App() {
     const db = getFirestore(); // Ensure this line is correct and necessary
@@ -30,29 +32,29 @@ function App() {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>; // Show a loading indicator while checking auth state
+        return <div>loDINF</div>; // Show a loading indicator while checking auth state
     }
 
     return (
-        <BrowserRouter>
-            {isLoggedIn && <Nav />} {/* Conditionally render Nav if logged in */}
-            <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                
-                {/* Protected routes, only accessible if logged in */}
-                {isLoggedIn ? (
+         <BrowserRouter>
+             {isLoggedIn && <Nav />} {/* Conditionally render Nav if logged in */}
+         <Routes>
+             <Route path="/" element={<Landing />} />
+             <Route path="/login" element={<Login />} />
+             <Route path="/signup" element={<SignUp />} />
+            <Route path="/user_agent" element={<Person_or_Agent />} />    
+             {/* Protected routes, only accessible if logged in */}
+             {isLoggedIn ? (
                     <>
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/bys" element={<SlotBook />} />
-                        <Route path="/user-acc" element={<User_acc />} />
-                    </>
-                ) : (
-                    // Redirect to login if not logged in
-                    <Route path="*" element={<Navigate to='/login' replace />} />
-                )}
-            </Routes>
+                     <Route path="/home" element={<Home />} />
+                     <Route path="/bys" element={<SlotBook />} />
+                     <Route path="/user-acc" element={<User_acc />} />
+                 </>
+             ) : (
+                 // Redirect to login if not logged in
+                 <Route path="*" element={<Navigate to='/login' replace />} />
+             )}
+         </Routes>
         </BrowserRouter>
     );
 }
