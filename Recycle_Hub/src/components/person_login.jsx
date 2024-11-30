@@ -24,6 +24,8 @@ export default function Login() {
       } else {
         setError("User not found in Firestore.");
       }
+
+
     } catch (err) {
       setError(err.message); 
     }

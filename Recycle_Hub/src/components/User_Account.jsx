@@ -49,13 +49,22 @@ export default function User_acc() {
     useEffect(() => {
         const fetchUserData = async () => {
             const userDoc = doc(db, "users", auth.currentUser.uid);
+            const AgentDOc = doc(db, "Agents", auth.currentUser.uid);
             const docSnap = await getDoc(userDoc);
+            const docSnap1 = await getDoc(AgentDOc);
             if (docSnap.exists()) {
                 setName(docSnap.data().name);
                 setMobile(docSnap.data().mobile);
                 setEmail(docSnap.data().email);
                 setAddress(docSnap.data().address); 
                 setImage(docSnap.data().image);
+            }
+            else{
+                setName(docSnap1.data().name);
+                setMobile(docSnap1.data().mobile);
+                setEmail(docSnap1.data().email);
+                setAddress(docSnap1.data().address); 
+                setImage(docSnap1.data().image);
             }
         };
         fetchUserData();
@@ -125,6 +134,7 @@ export default function User_acc() {
                     </div>
                     <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditEmail}><i className='bx bx-edit'></i></button>
                 </div>
+                
                 <div className="flex h-1/6 justify-around items-center" id="details">
                     <div className="flex flex-col w-full md:w-1/2">
                         <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Address</h2>
@@ -132,6 +142,8 @@ export default function User_acc() {
                     </div>
                     <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditAddress}><i className='bx bx-edit'></i></button>
                 </div>
+               
+
             </div>
         </div>
     );

@@ -3,15 +3,16 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"; // Make sure to import Firestore functions
 import { auth } from "../Backend/firebaseconfig"; // Import auth from firebaseconfig
 import { useEffect } from "react";
+import { useNavigate} from "react-router-dom";
 export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [mobile, setMobile] = useState("");
     const [error, setError] = useState("");
+    const [name, setName] = useState("");
     const [message, setMessage] = useState("");
-
     const db = getFirestore(); // Initialize Firestore
-    
+    const navigate = useNavigate();
     const signUp = async (e) => {
         e.preventDefault();
         setError(null);
@@ -23,6 +24,7 @@ export default function SignUp() {
             alert("Please fill all the fields");
             setEmail("");
             setMobile("");  
+            setName("");
             return;
         }
         if (password.length < 6) {
@@ -31,7 +33,6 @@ export default function SignUp() {
             setPassword("");
             return;
         }
-
         try {
             // Create user with email and password
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -42,25 +43,38 @@ export default function SignUp() {
                 setError("User already exists");
             } else {
             // Save user data in Firestore
-            await setDoc(doc(db, "users", user.uid), {
-                email: email,
-                mobile: mobile,
-                createdAt: new Date()
-            });
+            if (document.getElementById('user_or_agent').value === "user") {
+                await setDoc(doc(db, "users", user.uid), {
+                    email: email,
+                    mobile: mobile,
+                    Role: "user",
+                    name: name,
+                    createdAt: new Date()
+                });
+            }
+            else{
+                await setDoc(doc(db, "Agents", user.uid), {
+                    email: email,
+                    mobile: mobile,
+                    Role: "agent",
+                    name: name,
+                    createdAt: new Date()
+                });
+            }
 
             setMessage("User created successfully!");
             setEmail("");
             setPassword("");    
-            setMobile("");  
+            setMobile(""); 
+            setName("");
+            navigate("/home") 
         }
-
-
         } catch (err) {
             console.log("Error in creating user:", err);
             setError(err.message);
         }
-
     };
+
     React.useEffect(() => {
         const password_visible = document.getElementById('password_visible');
         const togglePasswordVisibility=()=>{
@@ -99,7 +113,17 @@ export default function SignUp() {
                     />
                     <i className='bx bx-user absolute top-2 right-2 text-2xl font-bold text-green-400'></i>
                 </div>
-
+                <div className="w-full md:w-1/2 flex relative">
+                    <input 
+                        id="name" 
+                        type="tel" 
+                        placeholder="Name" 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)}  
+                        required 
+                        className="border border-black md:px-4 py-2 w-full text-center md:text-start rounded-md" 
+                    />
+                </div>
                 <div className="w-full md:w-1/2 flex relative">
                     <input 
                         id="mobile" 
@@ -124,7 +148,7 @@ export default function SignUp() {
                 />
                 <i className='bx bx-show top-1 right-2 absolute text-2xl font-bold text-green-400 cursor-pointer' id="password_visible"></i>
                 </div>
-                <select className="w-1/2 rounded-md">
+                <select className="w-1/2 rounded-md border border-black" id="user_or_agent">
                     <option value="user">User</option>
                     <option value="agent">Agent</option>
                 </select>
