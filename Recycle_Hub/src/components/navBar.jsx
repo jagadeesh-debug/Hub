@@ -20,14 +20,14 @@ export default function Nav() {
     }
 
     return (
-        <div className="flex justify-between md:justify-normal md:gap-x-12 bg-transparent items-center px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px " }}>
-            <div className="w-1/6">
+        <div className="flex justify-between md:justify-evenly md:gap-x-12 bg-transparent items-center px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px " }}>
+            <div className="w-1/6 ">
                 <Link to="/home">
-                    <img src="./src/assets/LOGO.png" className="aspect-video w-1/3" alt="image" />
+                    <img src="./src/assets/recycling.png" className="aspect-video w-1/2 md:w-1/3 h-12 " alt="image" />
                 </Link>
             </div>
 
-            <nav className="rounded-md p-2 md:h-1/4 lg:h-12 lg:text-xl w-5/6 justify-evenly items-center hidden md:flex md:sticky" id="desktop-view">
+            <nav className="rounded-md p-2 md:h-1/4 lg:h-12 lg:text-xl w-5/6 justify-evenly items-center hidden md:flex " id="desktop-view">
                 <Link to="/home">
                     <button className="text-green-400 rounded-md flex-grow text-center px-2 py-1 hover:bg-green-400 hover:text-black hover:cursor-pointer">Home</button>
                 </Link>

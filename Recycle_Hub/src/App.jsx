@@ -5,7 +5,7 @@ import Home from './components/home';
 import SignUp from './components/person_signUp';
 import SlotBook from './components/book_the_slot';
 import User_acc from './components/User_Account';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { auth } from './Backend/firebaseconfig'; // Ensure this import is correct and auth is properly initialized
 import { getFirestore } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
@@ -14,9 +14,8 @@ import Person_or_Agent from './components/Person_or_Agent.login.jsx';
 import LoadingScreen from './components/loading_screen.jsx';
 
 function App() {
-    const db = getFirestore(); // Ensure this line is correct and necessary
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -25,36 +24,33 @@ function App() {
             } else {
                 setIsLoggedIn(false);
             }
-            setLoading(false); // Set loading to false after checking auth state
+            setIsLoading(false); // Set loading to false after checking auth state
         });
-
         return () => unsubscribe();
     }, []);
 
-    if (loading) {
-        return <div>loDINF</div>; // Show a loading indicator while checking auth state
+    if (isLoading) {
+        return <LoadingScreen />; // Show a loading screen while checking auth state
     }
 
     return (
-         <BrowserRouter>
-             {isLoggedIn && <Nav />} {/* Conditionally render Nav if logged in */}
-         <Routes>
-             <Route path="/" element={<Landing />} />
-             <Route path="/login" element={<Login />} />
-             <Route path="/signup" element={<SignUp />} />
-            <Route path="/user_agent" element={<Person_or_Agent />} />    
-             {/* Protected routes, only accessible if logged in */}
-             {isLoggedIn ? (
+        <BrowserRouter>
+            {isLoggedIn && <Nav />} {/* Conditionally render Nav if logged in */}
+            <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/user_agent" element={<Person_or_Agent />} />
+                {isLoggedIn ? (
                     <>
-                     <Route path="/home" element={<Home />} />
-                     <Route path="/bys" element={<SlotBook />} />
-                     <Route path="/user-acc" element={<User_acc />} />
-                 </>
-             ) : (
-                 // Redirect to login if not logged in
-                 <Route path="*" element={<Navigate to='/login' replace />} />
-             )}
-         </Routes>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/bys" element={<SlotBook />} />
+                        <Route path="/user-acc" element={<User_acc />} />
+                    </>
+                ) : (
+                    <Route path="*" element={<Navigate to='/login' replace />} />
+                )}
+            </Routes>
         </BrowserRouter>
     );
 }

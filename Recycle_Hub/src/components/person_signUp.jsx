@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"; // Make sure to import Firestore functions
+import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "firebase/firestore"; // Make sure to import Firestore functions
 import { auth } from "../Backend/firebaseconfig"; // Import auth from firebaseconfig
 import { useEffect } from "react";
 import { useNavigate} from "react-router-dom";
@@ -10,6 +10,7 @@ export default function SignUp() {
     const [mobile, setMobile] = useState("");
     const [error, setError] = useState("");
     const [name, setName] = useState("");
+    const [City, setCity] = useState("");
     const [message, setMessage] = useState("");
     const db = getFirestore(); // Initialize Firestore
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function SignUp() {
         e.preventDefault();
         setError(null);
         setMessage("");
-
+        let c = City.toLocaleUpperCase();
         // Validate input fields
         if (!email || !password || !mobile) {
             setError("Please fill all the fields");
@@ -25,6 +26,7 @@ export default function SignUp() {
             setEmail("");
             setMobile("");  
             setName("");
+            setCity("");
             return;
         }
         if (password.length < 6) {
@@ -49,6 +51,7 @@ export default function SignUp() {
                     mobile: mobile,
                     Role: "user",
                     name: name,
+                    City: c,
                     createdAt: new Date()
                 });
             }
@@ -58,8 +61,10 @@ export default function SignUp() {
                     mobile: mobile,
                     Role: "agent",
                     name: name,
+                    City: c,
                     createdAt: new Date()
                 });
+                updateDoc(doc(db, "Cities", "Locations"), { Cities_Array: arrayUnion(c) }); 
             }
 
             setMessage("User created successfully!");
@@ -67,6 +72,7 @@ export default function SignUp() {
             setPassword("");    
             setMobile(""); 
             setName("");
+            setCity("");
             navigate("/home") 
         }
         } catch (err) {
@@ -135,6 +141,17 @@ export default function SignUp() {
                         className="border border-black md:px-4 py-2 w-full text-center md:text-start rounded-md" 
                     />
                     <i className='bx bx-dialpad text-green-400 absolute top-1 font-bold right-2 text-2xl'></i>
+                </div>
+                <div className="w-full md:w-1/2 flex relative">
+                        <input 
+                    id="City" 
+                    type="text" 
+                    placeholder="Kailash" 
+                    value={City} 
+                    onChange={(e) => setCity(e.target.value)} 
+                    required 
+                    className="border border-black md:px-4 py-2 w-full  text-center md:text-start rounded-md" 
+                />
                 </div>
                 <div className="w-full md:w-1/2 flex relative">
                         <input 

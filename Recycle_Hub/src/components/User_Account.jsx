@@ -6,7 +6,7 @@ export default function User_acc() {
     const [mobile, setMobile] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [address, setAddress] = useState("");
+    const [City, setAddress] = useState("");
     const [image,setImage]  = useState("");
     const db = getFirestore(); 
    
@@ -56,14 +56,14 @@ export default function User_acc() {
                 setName(docSnap.data().name);
                 setMobile(docSnap.data().mobile);
                 setEmail(docSnap.data().email);
-                setAddress(docSnap.data().address); 
+                setAddress(docSnap.data().City); 
                 setImage(docSnap.data().image);
             }
             else{
                 setName(docSnap1.data().name);
                 setMobile(docSnap1.data().mobile);
                 setEmail(docSnap1.data().email);
-                setAddress(docSnap1.data().address); 
+                setAddress(docSnap1.data().City); 
                 setImage(docSnap1.data().image);
             }
         };
@@ -86,7 +86,7 @@ export default function User_acc() {
     return (
         <div className="h-screen flex flex-col items-center">
             <div className=" w-full md:w-1/2 md:mt-4 flex md:justify-evenly">
-                <div className="w-2/3 md:w-1/2 lg:w-1/3 flex justify-center items-center relative border">
+                <div className="w-2/3 md:w-1/2 lg:w-1/3 flex justify-center items-center relative">
                     <img className="border border-black aspect-square relative rounded-full w-1/2 md:w-2/3 z-0 object-cover" src={image } alt="User" />
                     <button className="absolute bottom-2 md:bottom-5 right-12 z-2 cursor-pointer">
                         <i className='bx bx-edit text-2xl md:text-3xl text-green-500 cursor-pointer'></i>
@@ -137,8 +137,8 @@ export default function User_acc() {
                 
                 <div className="flex h-1/6 justify-around items-center" id="details">
                     <div className="flex flex-col w-full md:w-1/2">
-                        <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Address</h2>
-                        <p className="text-xl font-semibold">{address}</p>
+                        <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>City</h2>
+                        <p className="text-xl font-semibold">{City}</p>
                     </div>
                     <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditAddress}><i className='bx bx-edit'></i></button>
                 </div>
