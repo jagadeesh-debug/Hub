@@ -49,4 +49,10 @@
     - dynamic rendering
     - dynamic editing
     - ip address tracking upon request booking
+## Agent
+- **Agent Array**
+  - store cities
+  - add city filters
+  - get array of agents
+  
   
