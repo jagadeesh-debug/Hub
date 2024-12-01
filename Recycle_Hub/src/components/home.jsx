@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import recycle_video from "../assets/recycle_hub.mp4";
 export default function Home() {
 
     return (
@@ -19,7 +20,7 @@ export default function Home() {
             </div>
             <div className="md:w-2/3 lg:w-1/2 lg:h-1/2 lg:mt-0 h-1/3 border border-black rounded-md md:mt-12  flex justify-center items-center bg-gray-300  md:h-1/3">
                 <video className="rounded-md w-full h-full object-cover" controls>
-                    <source src="src/assets/recycle_hub.mp4" type="video/mp4" />
+                    <source src={recycle_video} type="video/mp4" />
                 </video>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../Backend/firebaseconfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { getDoc,doc } from "firebase/firestore";
@@ -9,6 +9,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); 
 
+  const navigate = useNavigate();
+
   const login = async (e) => {
     e.preventDefault();
     try {
@@ -16,19 +18,45 @@ export default function Login() {
       const user = userCredential.user;
 
       const userDoc = await getDoc(doc(db, "users", user.uid));
-
       if (userDoc.exists) {
-        window.location = '/home'; //After successful login, user will be redirected to home.html
+        navigate('/home');
+        // window.location = '/home'; //After successful login, user will be redirected to home.html
       } else {
         setError("User not found in Firestore.");
       }
+
+
     } catch (err) {
       setError(err.message); 
     }
   };
 
+// code for visibility of password
+  React.useEffect(() => {
+    const password_visible = document.getElementById('password_visible');
+
+    const togglePasswordVisibility = () => {
+      const password = document.getElementById('password');
+      if (password.type === 'password') {
+        password.type = 'text';
+        password_visible.classList.remove('bx-show');
+        password_visible.classList.add('bx-hide');
+      } else {
+        password.type = 'password';
+        password_visible.classList.remove('bx-hide');
+        password_visible.classList.add('bx-show');
+      }
+    };
+
+    password_visible.addEventListener('click', togglePasswordVisibility);
+
+    return () => {
+      password_visible.removeEventListener('click', togglePasswordVisibility);
+    };
+  }, []);
+
   return (
-    <div className="flex justify-center items-center md:justify-center md:items-center">
+    <div className="flex justify-center items-center md:justify-center md:items-center min-h-screen">
       <div className="flex flex-col md:w-1/2 px-4 py-4 space-y-8 items-center">
         <h1 className="text-2xl md:text-5xl text-green-400" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>
           Login Here
@@ -48,18 +76,20 @@ export default function Login() {
         </div>
 
         {/* Password Input */}
+        <div className="w-full md:w-2/3 xl:w-1/2 flex relative">
         <input
           id="password"
           type="password"
           placeholder="Bhrama@0"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border border-black w-full md:px-4 py-2 md:w-2/3 xl:w-1/2 rounded-md"
+          className="border  border-black w-full md:px-4 py-2  rounded-md"
         />
-
+        <i className='bx bx-show absolute top-1 right-2 text-2xl font-bold text-green-400 cursor-pointer' id="password_visible"></i>
+      </div>
         {/* Login Button */}
         <button
-          id="login"
+          id="login_button"
           className="text-xl bg-green-400 md:w-1/4 rounded-md p-1 font-bold"
           onClick={login}
         >
