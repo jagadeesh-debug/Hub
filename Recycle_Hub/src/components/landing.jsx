@@ -1,16 +1,16 @@
 import React from "react";
 // import "../app.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Landing() {
 
     const [loading, setLoading] = React.useState(false);
-
+    const Navigate = useNavigate(); 
     const handleClick = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            window.location.href = "/user_agent";
-        }, 1000);
+            Navigate('/user_agent');
+        }, 3000);
     };
 return (
     <div className="flex flex-col h-screen ">
