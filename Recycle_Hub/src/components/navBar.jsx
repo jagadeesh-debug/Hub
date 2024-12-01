@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import {  Link, useNavigate } from "react-router-dom";
 import { auth } from "../Backend/firebaseconfig";
 import nav_image from "../assets/recycling.png";
 export default function Nav() {
