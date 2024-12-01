@@ -83,7 +83,7 @@ export default function Login() {
           placeholder="Bhrama@0"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border  border-black w-full md:px-4 py-2  rounded-md"
+          className="border  border-black w-full md:px-4 py-2  rounded-md pl-3"
         />
         <i className='bx bx-show absolute top-1 right-2 text-2xl font-bold text-green-400 cursor-pointer' id="password_visible"></i>
       </div>

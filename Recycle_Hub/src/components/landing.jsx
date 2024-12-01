@@ -2,6 +2,16 @@ import React from "react";
 // import "../app.css";
 import { Link } from "react-router-dom";
 export default function Landing() {
+
+    const [loading, setLoading] = React.useState(false);
+
+    const handleClick = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            window.location.href = "/user_agent";
+        }, 1000);
+    };
 return (
     <div className="flex flex-col h-screen ">
         <style
@@ -69,7 +79,7 @@ return (
             </div>
                
         <div className="flex justify-center mt-12 border w-1/4 md:w-1/6 rounded-md border-black get_started">
-        <Link to="/user_agent">
+        <Link  onClick={handleClick}>
             <button className="md:text-2xl text-md">Get Started</button>
         </Link>
         </div>

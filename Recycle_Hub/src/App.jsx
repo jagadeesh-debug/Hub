@@ -5,9 +5,8 @@ import Home from './components/home';
 import SignUp from './components/person_signUp';
 import SlotBook from './components/book_the_slot';
 import User_acc from './components/User_Account';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { auth } from './Backend/firebaseconfig'; // Ensure this import is correct and auth is properly initialized
-import { getFirestore } from 'firebase/firestore';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { auth } from './Backend/firebaseconfig'; 
 import { useState, useEffect } from 'react';
 import Landing from './components/landing.jsx';
 import Person_or_Agent from './components/Person_or_Agent.login.jsx';
@@ -18,19 +17,25 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if (user) {
-                setIsLoggedIn(true);
-            } else {
-                setIsLoggedIn(false);
-            }
-            setIsLoading(false); // Set loading to false after checking auth state
-        });
-        return () => unsubscribe();
+        const timeout = setTimeout(() => {
+            // Wait for 3 seconds before checking auth state
+            const unsubscribe = auth.onAuthStateChanged(user => {
+                if (user) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
+                setIsLoading(false);
+            });
+
+            return () => unsubscribe();
+        }, 3000); // Set a delay of 3 seconds
+
+        return () => clearTimeout(timeout); // Clean up the timeout on unmount
     }, []);
 
     if (isLoading) {
-        return <LoadingScreen />; // Show a loading screen while checking auth state
+        return <LoadingScreen />;
     }
 
     return (

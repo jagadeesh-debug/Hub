@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {  Link, useNavigate } from "react-router-dom";
 import { auth } from "../Backend/firebaseconfig";
 import nav_image from "../assets/recycling.png";
+import LoadingScreen from "./loading_screen";
 export default function Nav() {
     const [menuopen, setmenuopen] = useState(false);
     const navigate = useNavigate();
@@ -9,6 +10,11 @@ export default function Nav() {
     const togglemenu = () => {
         setmenuopen(!menuopen);
     };
+    const load = () => {
+        setTimeout(() => {
+            return <LoadingScreen/>
+        }, 3000);
+    }
 
     function logout() {
         auth.signOut().then(() => {
@@ -20,8 +26,8 @@ export default function Nav() {
 
     return (
         <div className="flex justify-between md:justify-evenly md:gap-x-12 bg-transparent items-center px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px " }}>
-            <div className="w-1/6 ">
-                <Link to="/home">
+            <div className="w-1/6 " >
+                <Link to="/home"  onClick={load}>
                     <img src={nav_image} className="aspect-video w-1/2 md:w-1/3 h-12 " alt="image" />
                 </Link>
             </div>
@@ -63,6 +69,9 @@ export default function Nav() {
                     <Link to="/user-acc" onClick={togglemenu}>
                         <button className="text-green-400 rounded-md flex-grow text-center hover:bg-green-400 hover:text-black hover:cursor-pointer">Account</button>
                     </Link>
+                    <Link onClick={togglemenu}>
+                        <button className="text-green-400 rounded-md w-1/3 text-sm md:text-xl md:w-full text-nowrap py-1 px-2 hover:bg-green-300" onClick={logout}>Log Out</button>
+                   </Link>
                 </div>
             </nav>
         </div>

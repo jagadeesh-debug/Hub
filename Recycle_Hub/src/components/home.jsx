@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import recycle_video from "../assets/recycle_hub.mp4";
+import LoadingScreen from "./loading_screen";
 export default function Home() {
+    useEffect(() =>{
+        setTimeout(()=>{
+            return <LoadingScreen/>
+        },3000);
+    })
 
     return (
         <div className="flex h-screen flex-col gap-y-12  items-center  lg:flex-row lg:justify-between px-4 py-2">
