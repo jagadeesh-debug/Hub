@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef,useEffect } from "react";
 import {db, auth} from "../Backend/firebaseconfig";
-import { getDoc, doc, setDoc, getFirestore } from "firebase/firestore";
+import { getDoc, doc, setDoc, getFirestore,updateDoc, arrayUnion } from "firebase/firestore";
 export default function User_acc() {
     const [mobile, setMobile] = useState("");
     const [name, setName] = useState("");
@@ -39,11 +39,14 @@ export default function User_acc() {
         }
     };
     const handleEditAddress = async ()=>{
-        const newAddress = prompt("Enter new address");
+        let newAddress = prompt("Enter new address");
         if(newAddress){
+            newAddress = newAddress.toLocaleUpperCase();
             setAddress(newAddress);
             const userDoc = doc(db, "users", auth.currentUser.uid);
-            await setDoc(userDoc, { address: newAddress }, { merge: true });
+            await setDoc(userDoc, { City: newAddress }, { merge: true });
+            await  updateDoc(doc(db, "Cities", "Locations"), { Cities_Array: arrayUnion(newAddress) }); 
+            
         }
     };
     useEffect(() => {

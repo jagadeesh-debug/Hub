@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-
+import delhi from "../assets/Delhi.jpg";
+import hyderabad from "../assets/HYD.jpg";
+import maharashtra from "../assets/MAH.jpg";
+import vizag from "../assets/VIZAG.jpg";
 export default function SlotBook() {
     const [cities, setCities] = useState([]);
 
@@ -35,16 +38,16 @@ export default function SlotBook() {
             </div>
             <div className=" w-full grid md:grid-cols-2 md:grid-rows-2 grid-rows-4 place-items-center ">
                 <div className=" h-5/6 w-2/3  md:w-2/3 md:h-2/3  lg:h-3/4 rounded-2xl cursor-pointer">
-                    <img src="./src/assets/Delhi.jpg" className="h-full w-full rounded-2xl "/>
+                    <img src={delhi} className="h-full w-full rounded-2xl "/>
                 </div>
                 <div className=" h-5/6  w-2/3 md:w-2/3 md:h-2/3  lg:h-3/4 rounded-2xl cursor-pointer">
-                    <img src="./src/assets/MAH.jpg" className="h-full w-full rounded-2xl"/>
+                    <img src={hyderabad} className="h-full w-full rounded-2xl"/>
                 </div>
                 <div className=" h-5/6 w-2/3  md:w-2/3 md:h-2/3  lg:h-3/4 rounded-2xl cursor-pointer">
-                    <img src="./src/assets/HYD.jpg" className="h-full w-full rounded-2xl"/>
+                    <img src={vizag} className="h-full w-full rounded-2xl"/>
                 </div>
                 <div className=" h-5/6 w-2/3  md:w-2/3 md:h-2/3  lg:h-3/4 rounded-2xl cursor-pointer">
-                    <img src="./src/assets/VIZAG.jpg" className="h-full w-full rounded-2xl"/>
+                    <img src={maharashtra} className="h-full w-full rounded-2xl"/>
                 </div>
             </div>
         </div>

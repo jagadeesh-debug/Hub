@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { auth } from "../Backend/firebaseconfig";
-
+import nav_image from "../assets/recycling.png";
 export default function Nav() {
     const [menuopen, setmenuopen] = useState(false);
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function Nav() {
         <div className="flex justify-between md:justify-evenly md:gap-x-12 bg-transparent items-center px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px " }}>
             <div className="w-1/6 ">
                 <Link to="/home">
-                    <img src="./src/assets/recycling.png" className="aspect-video w-1/2 md:w-1/3 h-12 " alt="image" />
+                    <img src={nav_image} className="aspect-video w-1/2 md:w-1/3 h-12 " alt="image" />
                 </Link>
             </div>
 
