@@ -40,7 +40,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            {isLoggedIn && <Nav />} {/* Conditionally render Nav if logged in */}
+            {isLoggedIn && <Nav />}
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
