@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import Landing from './components/landing.jsx';
 import Person_or_Agent from './components/Person_or_Agent.login.jsx';
 import LoadingScreen from './components/loading_screen.jsx';
-
+import { Agents } from './components/Agents.jsx';
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -46,6 +46,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/user_agent" element={<Person_or_Agent />} />
+                <Route path="/agents" element={<Agents />} />
                 {isLoggedIn ? (
                     <>
                         <Route path="/home" element={<Home />} />

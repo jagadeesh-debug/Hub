@@ -1,29 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { collection, getFirestore, getDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import Agent_cards from "./Agent_cards";
 
 export function Agents() {
-    const db = getFirestore();
-    const [agents, setAgents] = useState([]);
-    
-    useEffect(() => {
-        const agentDocref = collection(db, "Agents");
-        const cityRef = getDoc(db, "Cities", "Location");
-        if (agentDocref.exists() && cityRef.exists()) {
-            if (agentDocref.location === cityRef) {
-                setAgents(agentDocref);
-            }
-        }
-    }, [db]);
+  const { state } = useLocation();
+  const selectedCity = state?.city || "";
+  const [agents, setAgents] = useState([]);
 
-    return (
-        <div>
-            <h1>Agents</h1>
-            <ul>
-                {agents.map((agent) => (
-                    <Agent_cards key={agent.id} agent={agent} />
-                ))}
-            </ul>
-        </div>
-    );
+  useEffect(() => {
+    const fetchAgents = async () => {
+      const db = getFirestore();
+      const agentCollection = collection(db, "Agents");
+      const agentQuery = query(
+        agentCollection,
+        where("City", "==", selectedCity.toUpperCase())
+      );
+      const agentSnapshot = await getDocs(agentQuery);
+      const agentList = agentSnapshot.docs.map((doc) => doc.data());
+    
+      setAgents(agentList);
+    };
+    if (selectedCity) {
+      fetchAgents();
+    }
+  }, [selectedCity]);
+
+  return (
+    <div>
+         <center className="mt-12 font-serif"><h1>Agents in {selectedCity}</h1></center>
+      <ul>
+        {agents.map((agent, index) => (
+          <Agent_cards key={index} agent={agent} />
+        ))}
+      </ul>
+    </div>
+  );
 }

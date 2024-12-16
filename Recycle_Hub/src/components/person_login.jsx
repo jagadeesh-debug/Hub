@@ -20,7 +20,6 @@ export default function Login() {
       const userDoc = await getDoc(doc(db, "users", user.uid));
       if (userDoc.exists) {
         navigate('/home');
-        // window.location = '/home'; //After successful login, user will be redirected to home.html
       } else {
         setError("User not found in Firestore.");
       }
@@ -30,8 +29,22 @@ export default function Login() {
       setError(err.message); 
     }
   };
+    React.useEffect(() => {
+      const loginButton = document.getElementById('login_button');
 
-// code for visibility of password
+      const handleEnterKey = (event) => {
+        if (event.key === 'enter') {
+          loginButton.click();
+        }
+      };
+
+      document.addEventListener('keydown', handleEnterKey);
+
+      return () => {
+        document.removeEventListener('keydown', handleEnterKey);
+      };
+    }, []);
+
   React.useEffect(() => {
     const password_visible = document.getElementById('password_visible');
 

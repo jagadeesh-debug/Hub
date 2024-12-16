@@ -46,6 +46,18 @@
                 
             }
         };
+        const handleImageChange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = async () => {
+                    setImage(reader.result);
+                    const userDoc = doc(db, "users", auth.currentUser.uid);
+                    await setDoc(userDoc, { image: reader.result }, { merge: true });        // You can also upload the image to your backend here
+                };
+                reader.readAsDataURL(file);
+            }
+        };
         useEffect(() => {
             const fetchUserData = async () => {
                 const userDoc = doc(db, "users", auth.currentUser.uid);
@@ -70,18 +82,7 @@
             fetchUserData();
         }, []);
 
-        const handleImageChange = async (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onloadend = async () => {
-                    setImage(reader.result);
-                    const userDoc = doc(db, "users", auth.currentUser.uid);
-                    await setDoc(userDoc, { image: reader.result }, { merge: true });        // You can also upload the image to your backend here
-                };
-                reader.readAsDataURL(file);
-            }
-        };
+   
 
         return (
             <div className="h-screen flex flex-col items-center">

@@ -81,7 +81,7 @@ export default function SignUp() {
         }
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         const password_visible = document.getElementById('password_visible');
         const togglePasswordVisibility=()=>{
             const password = document.getElementById('signup_password');
