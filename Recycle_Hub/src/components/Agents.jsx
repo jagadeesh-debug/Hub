@@ -34,8 +34,8 @@ export function Agents() {
 
   return (
     <div>
-         <center className="mt-12 font-serif"><h1>Agents in {selectedCity}</h1></center>
-      <ul>
+         <center className="mt-12 cardfont"><h1>Agents in {selectedCity}</h1></center>
+      <ul className="">
         {agents.map((agent, index) => (
           <Agent_cards key={index} agent={agent} />
         ))}
