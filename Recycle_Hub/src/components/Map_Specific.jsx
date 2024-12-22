@@ -115,7 +115,7 @@ export default function MapView({ latitude, longitude }) {
             },
             layout: {
               "icon-image": "custom-icon",
-              "icon-size": 0.5,
+              "icon-size": 0.3,
               "icon-allow-overlap": true,
             },
           });
