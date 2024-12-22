@@ -4,7 +4,7 @@ import location_tag from "../assets/loc1.svg";
 
 export default function MapView({ latitude, longitude }) {
   useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiamFnYWRlZXNoMTciLCJhIjoiY200eXgxbms3MTBrZTJqczc2NDAyY3g4bCJ9.S1Z_pFJRQNaOruloIuBDRA';
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
 
     const map = new mapboxgl.Map({
       container: "map",
