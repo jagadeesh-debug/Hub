@@ -5,7 +5,7 @@ import Home from './components/home';
 import SignUp from './components/person_signUp';
 import SlotBook from './components/book_the_slot';
 import User_acc from './components/User_Account';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { auth } from './Backend/firebaseconfig'; 
 import { useState, useEffect } from 'react';
 import Landing from './components/landing.jsx';
@@ -13,55 +13,75 @@ import Person_or_Agent from './components/Person_or_Agent.login.jsx';
 import LoadingScreen from './components/loading_screen.jsx';
 import { Agents } from './components/Agents.jsx';
 import CurrentLocation from './components/location.jsx';
-function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+
+// Create a wrapper component for route transitions
+function RouteTransition({ children }) {
+    const [isTransitioning, setIsTransitioning] = useState(true);
+    const location = useLocation();
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            // Wait for 3 seconds before checking auth state
-            const unsubscribe = auth.onAuthStateChanged(user => {
-                if (user) {
-                    setIsLoggedIn(true);
-                } else {
-                    setIsLoggedIn(false);
-                }
-                setIsLoading(false);
-            });
+        setIsTransitioning(true);
+        const timer = setTimeout(() => {
+            setIsTransitioning(false);
+        }, 2000);
 
-            return () => unsubscribe();
-        }, 3000); // Set a delay of 3 seconds
+        return () => clearTimeout(timer);
+    }, [location]);
 
-        return () => clearTimeout(timeout); // Clean up the timeout on unmount
-    }, []);
-
-    if (isLoading) {
+    if (isTransitioning) {
         return <LoadingScreen />;
     }
 
-    return (
-        <BrowserRouter>
-            {isLoggedIn && <Nav />}
-            <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/user_agent" element={<Person_or_Agent />} />
-                <Route path="/agents" element={<Agents />} />
-                <Route path="/loading" element={<LoadingScreen />} />
-                <Route path="/location" element={<CurrentLocation />} />
-                {isLoggedIn ? (
-                    <>
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/bys" element={<SlotBook />} />
-                        <Route path="/user-acc" element={<User_acc />} />
-                    </>
-                ) : (
-                    <Route path="*" element={<Navigate to='/login' replace />} />
-                )}
-            </Routes>
-        </BrowserRouter>
-    );
+    return children;
+}
+
+function App() {
+        const [isLoggedIn, setIsLoggedIn] = useState(false);
+        const [isLoading, setIsLoading] = useState(true);
+
+        useEffect(() => {
+                const timeout = setTimeout(() => {
+                        const unsubscribe = auth.onAuthStateChanged(user => {
+                                if (user) {
+                                        setIsLoggedIn(true);
+                                } else {
+                                        setIsLoggedIn(false);
+                                }
+                                setIsLoading(false);
+                        });
+
+                        return () => unsubscribe();
+                }, 3000);
+
+                return () => clearTimeout(timeout);
+        }, []);
+
+
+        return (
+                <BrowserRouter>
+                        {isLoggedIn && <Nav />}
+                        <RouteTransition>
+                                <Routes>
+                                        <Route path="/" element={<Landing />} />
+                                        <Route path="/login" element={<Login />} />
+                                        <Route path="/signup" element={<SignUp />} />
+                                        <Route path="/user_agent" element={<Person_or_Agent />} />
+                                        <Route path="/agents" element={<Agents />} />
+                                        <Route path="/loading" element={<LoadingScreen />} />
+                                        <Route path="/location" element={<CurrentLocation />} />
+                                        {isLoggedIn ? (
+                                                <>
+                                                        <Route path="/home" element={<Home />} />
+                                                        <Route path="/bys" element={<SlotBook />} />
+                                                        <Route path="/user-acc" element={<User_acc />} />
+                                                </>
+                                        ) : (
+                                                <Route path="*" element={<Navigate to='/login' replace />} />
+                                        )}
+                                </Routes>
+                        </RouteTransition>
+                </BrowserRouter>
+        );
 }
 
 export default App;
