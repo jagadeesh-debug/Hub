@@ -51,6 +51,7 @@ function App() {
 
 
         return (
+                
                 <BrowserRouter>
                         {isLoggedIn && <Nav />}
                         <RouteTransition>
