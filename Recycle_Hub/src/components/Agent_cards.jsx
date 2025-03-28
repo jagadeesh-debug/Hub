@@ -40,7 +40,7 @@ export default function Agent_cards({ agent }) {
   };
 
   return (
-    <div className="items-center flex flex-wr p flex-col h-1/4 m-2 md:min-w-screen">
+    <div className="items-center flex flex-wr p flex-col h-1/4 m-2 md:min-w-screen transition-colors bg-gradient-to-l from-green-200 to-transparent">
       <div className="flex md:w-1/2 md:m-2  justify-center items-center gap-x-2 mt-2 border rounded-xl shadow-md">
         <div className="aspect-square flex h-[150px] justify-center items-center">
           <img

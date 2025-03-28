@@ -35,7 +35,7 @@ export default function SlotBook() {
     };
 
     return (
-        <div className="h-screen max-w-screen flex flex-col md:mt-5">
+        <div className="min-h-screen max-w-screen flex flex-col md:mt-5 transition-colors bg-gradient-to-l from-gray-200 to-transparent">
             <div className="flex flex-col items-center justify-center w-full">
                 <h2
                     className="text-green-600 text-center text-xl md:w-1/2 md:text-3xl px-2 py-2 rounded-lg"

@@ -89,7 +89,7 @@
    
 
         return (
-            <div className="h-screen flex flex-col items-center">
+            <div className="h-screen flex flex-col items-center transition-colors bg-gradient-to-l from-green-200 to-transparent">
                 <div className=" w-full md:w-1/2 md:mt-4 flex md:justify-evenly">
                     <div className="w-2/3 md:w-1/2 lg:w-1/3 flex justify-center items-center relative">
                         <img className="border border-black aspect-square relative rounded-full w-1/2 md:w-2/3 z-0 object-cover" src={image } alt="User" />

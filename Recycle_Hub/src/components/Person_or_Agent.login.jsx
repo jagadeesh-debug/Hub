@@ -10,7 +10,7 @@ export default function Person_or_Agent() {
     navigate("/Agent_login");
   }
   return (
-<div className="flex flex-col md:flex-row items-center justify-around min-h-screen w-full bg-gradient-to-b from-[#ccfff6] to-[#12ffcc] transition-colors ease-in-out duration-1000">
+<div className="flex flex-col md:flex-row items-center justify-around min-h-screen w-full transition-colors bg-gradient-to-l from-green-200 to-transparent">
 <div className="flex flex-col justify-center items-center border border-black rounded-lg p-8 bg-white shadow-lg w-full md:w-1/3 max-w-sm mx-4">
         <p className="text-lg text-fuchsia-600 mb-4 text-center">
           Come and join us to make the world sustainable

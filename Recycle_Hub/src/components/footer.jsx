@@ -4,7 +4,7 @@ import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg
 
 const Footer = () => {
   return (
-    <div className="flex flex-col   sm:flex-row items-center justify-around gap-2 sm:gap-0 bg- py-5 w-100vh bg-green-400 shadow-md">
+    <div className="flex flex-col   sm:flex-row items-center justify-around gap-2 sm:gap-0  py-5 w-100vw  bg-green-300 shadow-md ">
       {/* <Image src='/logo.png' width={100} height={100} alt="Logo" /> */}
       <span className="text-3xl font-bold">RecycleHub.</span>
       <p className="pt-4 text-sm ">
