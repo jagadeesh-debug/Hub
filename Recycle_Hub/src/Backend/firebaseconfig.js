@@ -4,15 +4,17 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"; 
 
 
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: "recyclehub-fa4e0.firebaseapp.com",
-  projectId: "recyclehub-fa4e0",
-  storageBucket: "recyclehub-fa4e0.firebasestorage.app",
-  messagingSenderId: "821296348060",
-  appId: "1:821296348060:web:b1e05514c8c150a62ae659",
-  measurementId: "G-WWT03K4P10"
-};
+  authDomain: "recyclehub-4404f.firebaseapp.com",
+  databaseURL: "https://recyclehub-4404f-default-rtdb.firebaseio.com",
+  projectId: "recyclehub-4404f",
+  storageBucket: "recyclehub-4404f.firebasestorage.app",
+  messagingSenderId: "757494925430",
+  appId: "1:757494925430:web:0b357ca95ad7cbc424f757",
+  measurementId: "G-SH7HMMWE3N"
+}
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);

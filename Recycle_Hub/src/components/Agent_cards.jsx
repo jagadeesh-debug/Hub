@@ -1,19 +1,52 @@
-import '../App.css';
+import React, { useState } from "react";
+import "../App.css";
+import { db } from "../Backend/firebaseconfig";
+import { getDoc, doc, setDoc } from "firebase/firestore";
+
 export default function Agent_cards({ agent }) {
-  const handleBookSlot = () => {
-    if (window.confirm("Are you sure you want to book this slot?")) {
-      window.location.href = "/location";
+
+  const handleBookSlot = async () => {
+    const inputQuantity = prompt(
+      "Enter the plastic quantity you want to sell us"
+    );
+
+    if (!inputQuantity || isNaN(inputQuantity)) {
+      alert("Please enter a valid quantity.");
+      return;
+    }
+
+    const newQuantity = parseInt(inputQuantity);
+
+    try {
+      const docRef = doc(db, "plasticSales", "totalPlastic"); // Reference to the document
+      const docSnap = await getDoc(docRef);
+
+      let updatedQuantity = newQuantity;
+
+      if (docSnap.exists()) {
+        const existingData = docSnap.data();
+        updatedQuantity += existingData.quantity || 0; // Ensure existing value is valid
+      }
+
+      await setDoc(docRef, { quantity: updatedQuantity });
+
+      alert(
+        `You have successfully booked a slot for ${newQuantity} kg of plastic.`
+      );
+    } catch (error) {
+      console.error("Error updating Firestore:", error);
+      alert("Failed to update the plastic quantity.");
     }
   };
 
   return (
-    <div className="items-center flex flex-wrap flex-col h-1/4 border border-black m-2 md:min-w-screen">
-      <div className="flex md:w-1/2 md:m-2 md:px-3 justify-center items-center gap-x-2 mt-2">
-        <div className="aspect-square flex h-[100px] justify-center items-center">
+    <div className="items-center flex flex-wr p flex-col h-1/4 m-2 md:min-w-screen">
+      <div className="flex md:w-1/2 md:m-2  justify-center items-center gap-x-2 mt-2 border rounded-xl shadow-md">
+        <div className="aspect-square flex h-[150px] justify-center items-center">
           <img
             src={agent.image}
             alt={`${agent.name}`}
-            className="rounded-full aspect-square"
+            className="rounded-full aspect-square border"
           />
         </div>
         <div className="flex flex-col justify-evenly md:px-4 md:py-2 text-sm md:text-md cardfont">

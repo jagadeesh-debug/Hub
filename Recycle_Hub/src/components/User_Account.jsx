@@ -61,26 +61,30 @@
         useEffect(() => {
             const fetchUserData = async () => {
                 const userDoc = doc(db, "users", auth.currentUser.uid);
-                const AgentDOc = doc(db, "Agents", auth.currentUser.uid);
-                const docSnap = await getDoc(userDoc);
-                const docSnap1 = await getDoc(AgentDOc);
-                if (docSnap.exists()) {
-                    setName(docSnap.data().name);
-                    setMobile(docSnap.data().mobile);
-                    setEmail(docSnap.data().email);
-                    setAddress(docSnap.data().City); 
-                    setImage(docSnap.data().image);
-                }
-                else{
-                    setName(docSnap1.data().name);
-                    setMobile(docSnap1.data().mobile);
-                    setEmail(docSnap1.data().email);
-                    setAddress(docSnap1.data().City); 
-                    setImage(docSnap1.data().image);
+                const agentDoc = doc(db, "Agents", auth.currentUser.uid);
+                const userSnap = await getDoc(userDoc);
+                const agentSnap = await getDoc(agentDoc);
+        
+                if (userSnap.exists()) {
+                    setName(userSnap.data().name);
+                    setMobile(userSnap.data().mobile);
+                    setEmail(userSnap.data().email);
+                    setAddress(userSnap.data().City);
+                    setImage(userSnap.data().image);
+                } else if (agentSnap.exists()) {
+                    setName(agentSnap.data().name);
+                    setMobile(agentSnap.data().mobile);
+                    setEmail(agentSnap.data().email);
+                    setAddress(agentSnap.data().City);
+                    setImage(agentSnap.data().image);
+                } else {
+                    console.log("User not found in either collection");
                 }
             };
+        
             fetchUserData();
         }, []);
+        
 
    
 

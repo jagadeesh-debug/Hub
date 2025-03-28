@@ -40,21 +40,14 @@ function App() {
         const [isLoading, setIsLoading] = useState(true);
 
         useEffect(() => {
-                const timeout = setTimeout(() => {
-                        const unsubscribe = auth.onAuthStateChanged(user => {
-                                if (user) {
-                                        setIsLoggedIn(true);
-                                } else {
-                                        setIsLoggedIn(false);
-                                }
-                                setIsLoading(false);
-                        });
-
-                        return () => unsubscribe();
-                }, 3000);
-
-                return () => clearTimeout(timeout);
-        }, []);
+                const unsubscribe = auth.onAuthStateChanged(user => {
+                    setIsLoggedIn(!!user);  // Immediately update state
+                    setIsLoading(false);
+                });
+            
+                return () => unsubscribe();
+            }, []);
+            
 
 
         return (
@@ -76,7 +69,7 @@ function App() {
                                                         <Route path="/user-acc" element={<User_acc />} />
                                                 </>
                                         ) : (
-                                                <Route path="*" element={<Navigate to='/login' replace />} />
+                                                <Route path="*" element={<Navigate to='/login' replace />} /> 
                                         )}
                                 </Routes>
                         </RouteTransition>

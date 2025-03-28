@@ -16,19 +16,21 @@ export default function Login() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+  
       const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists) {
-        navigate('/home');
+      const agentData = await getDoc(doc(db, "Agents", user.uid));
+  
+      if (userDoc.exists() || agentData.exists()) {  // Fix .exists() usage
+        navigate('/home');  // Ensure correct navigation
       } else {
         setError("User not found in Firestore.");
       }
-
-
+  
     } catch (err) {
-      setError(err.message); 
+      setError(err.message);
     }
   };
+  
     React.useEffect(() => {
       const loginButton = document.getElementById('login_button');
 
@@ -80,7 +82,7 @@ export default function Login() {
           <input
             id="email"
             type="email"
-            placeholder="bharamaramba@gmail.com"
+            placeholder="person@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="border border-black w-full pr-10 md:pr-10 px-4 py-2 rounded-md"
@@ -93,7 +95,7 @@ export default function Login() {
         <input
           id="password"
           type="password"
-          placeholder="Bhrama@0"
+          placeholder="person@0"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="border  border-black w-full md:px-4 py-2  rounded-md pl-3"
