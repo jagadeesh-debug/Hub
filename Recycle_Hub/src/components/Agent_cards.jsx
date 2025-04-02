@@ -26,13 +26,20 @@ export default function Agent_cards({ agent }) {
       if (docSnap.exists()) {
         const existingData = docSnap.data();
         updatedQuantity += existingData.quantity || 0; // Ensure existing value is valid
+        
       }
 
       await setDoc(docRef, { quantity: updatedQuantity });
+      
 
       alert(
         `You have successfully booked a slot for ${newQuantity} kg of plastic.`
+        
       );
+      if (window.confirm("Ok your order is accepted and check the agent location")) {
+        window.location.href = "/location";
+      }
+    
     } catch (error) {
       console.error("Error updating Firestore:", error);
       alert("Failed to update the plastic quantity.");

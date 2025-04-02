@@ -93,7 +93,7 @@ export default function MapView({ latitude, longitude }) {
           });
 
           // Add marker for end point
-          const endPoint = route[route.length - 1]; // Last point in the route
+          const endPoint = route[route.length -1]; // Last point in the route
           map.addLayer({
             id: "symbol-layer-end",
             type: "symbol",
