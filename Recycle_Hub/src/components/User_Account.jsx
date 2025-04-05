@@ -98,9 +98,9 @@
                             <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleImageChange} />
                         </button>
                     </div>
-                    <div className="w-5/6 md:w-1/2 flex flex-col items-center justify-center">
-                        <div className="text-orange-400 md:text-xl lg:text-2xl" id="userAccName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Hello {name}</div>
-                        <div className="text-black-400 md:text-md lg:text-xl" id="userName" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>{name}</div>
+                    <div className="w-5/6 md:w-1/2 flex flex-col items-center justify-center" style={{fontFamily:"Inter"}}>
+                        <div className="text-orange-400 md:text-xl lg:text-2xl" id="userAccName" >Hello {name}</div>
+                        <div className="text-black-400 md:text-md lg:text-xl" id="userName">{name}</div>
                         <div className="flex mt-2 w-full h-1/3 items-center justify-evenly">
                             <div className="flex flex-col items-center cursor-pointer">
                                 <i className='bx bxs-package text-xl md:text-xl lg:text-3xl'></i>
@@ -117,33 +117,33 @@
                         </div>
                     </div>
                 </div>
-                <div className="h-3/4 w-3/4 md:w-1/2 mt-2 flex flex-col gap-y-2">
+                <div className="h-3/4 w-3/4 md:w-1/2 mt-2 flex flex-col gap-y-2" style={{ fontFamily: 'Inter' }}>
                     <div className="flex w-full h-1/6 justify-around items-center" id="details">
                         <div className="flex flex-col w-full md:w-1/2">
-                            <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Name</h2>
-                            <p className="text-xl font-semibold" id="User_name">{name}</p>
+                            <h2 className="text-xl font-semibold" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Name</h2>
+                            <p className="text-xl " id="User_name">{name}</p>
                         </div>
                         <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditName}><i className='bx bx-edit' id="edit"></i></button>
                     </div>
                     <div className="flex h-1/6 justify-around items-center" id="details">
                         <div className="flex flex-col w-full md:w-1/2">
-                            <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Mobile</h2>
-                            <p className="text-xl font-semibold">{mobile}</p>
+                            <h2 className="text-xl font-semibold" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Mobile</h2>
+                            <p className="text-xl ">{mobile}</p>
                         </div>
                         <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditMobile}><i className='bx bx-edit'></i></button>
                     </div>
                     <div className="flex h-1/6 justify-around items-center" id="details">
                         <div className="flex flex-col w-full md:w-1/2">
-                            <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Email</h2>
-                            <p className="text-xl font-semibold">{email}</p>
+                            <h2 className="text-xl font-semibold" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>Email</h2>
+                            <p className="text-xl">{email}</p>
                         </div>
                         <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditEmail}><i className='bx bx-edit'></i></button>
                     </div>
                     
                     <div className="flex h-1/6 justify-around items-center" id="details">
                         <div className="flex flex-col w-full md:w-1/2">
-                            <h2 className="text-xl" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>City</h2>
-                            <p className="text-xl font-semibold">{City}</p>
+                            <h2 className="text-xl font-semibold" style={{ fontFamily: 'Bagel Fat One, sans-serif' }}>City</h2>
+                            <p className="text-md ">{City}</p>
                         </div>
                         <button className="text-xl italic bg-green-400 text-black w-1/4 h-fit rounded-md" onClick={handleEditAddress}><i className='bx bx-edit'></i></button>
                     </div>

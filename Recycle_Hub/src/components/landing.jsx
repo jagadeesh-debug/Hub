@@ -10,7 +10,7 @@ export default function Landing() {
         setTimeout(() => {
             setLoading(false);
             Navigate('/user_agent');
-        }, 3000);
+        },1000);
     };
 return (
     <div className="flex flex-col h-screen ">
