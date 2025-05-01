@@ -54,5 +54,41 @@
   - store cities
   - add city filters
   - get array of agents
-  
+
+  # ♻️ Recycle Hub
+
+A modern React + Vite project focused on connecting users with recycling agents efficiently based on their location. The app includes booking slots, viewing nearby agents, and profile management for both users and agents.
+
+---
+
+## ⚛️ React + Vite Project Setup
+
+This project uses **React** with **Vite** for blazing fast development and optimized build processes.
+
+### 🛠️ Tech Stack
+
+- ⚡ Vite (Frontend Tooling)
+- ⚛️ React (Modern Components, Hooks)
+- 💅 Tailwind CSS (Optional, Easy Integration)
+- 🔥 Hot Module Replacement
+- 🌍 Geolocation & Mapping
+- 🔐 Node.js & Express (Backend)
+
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/jagadeesh-debug/Hub
+cd Hub
+npm install
+# or
+yarn install
+
+npm run dev
+# or
+yarn dev
+
   
