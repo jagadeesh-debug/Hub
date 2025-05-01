@@ -9,7 +9,7 @@ export default function Landing() {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            Navigate('/user_agent');
+            Navigate('/login');
         },1000);
     };
 return (

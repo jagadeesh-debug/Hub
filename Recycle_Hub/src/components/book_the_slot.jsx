@@ -56,7 +56,7 @@ export default function SlotBook() {
                     ))}
                 </select>
             </div>
-            <div className="w-full grid md:grid-cols-2 md:grid-rows-2 grid-rows-4 place-items-center">
+            <div className="w-full grid md:grid-cols-2   md:grid-rows-2 grid-rows-4 place-items-center">
                 <div className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer">
                     <img src={delhi} className="h-full w-full rounded-2xl" />
                 </div>

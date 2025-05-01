@@ -94,7 +94,7 @@
                     <div className="w-2/3 md:w-1/2 lg:w-1/3 flex justify-center items-center relative">
                         <img className="border border-black aspect-square relative rounded-full w-1/2 md:w-2/3 z-0 object-cover" src={image } alt="User" />
                         <button className="absolute bottom-2 md:bottom-5 right-12 z-2 cursor-pointer">
-                            <i className='bx bx-edit text-2xl md:text-3xl text-green-500 cursor-pointer'></i>
+                            <i className='bx bx-edit text-2xl md:text-3xl text-black-500 cursor-pointer'></i>
                             <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" onChange={handleImageChange} />
                         </button>
                     </div>
