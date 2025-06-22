@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import Agent_cards from "./Agent_cards";
 
-export function Agents() {
+export default function Agents() {
   const { state } = useLocation();
   const selectedCity = state?.city || "";
   const [agents, setAgents] = useState([]);
