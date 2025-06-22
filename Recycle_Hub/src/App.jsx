@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import Landing from './components/landing.jsx';
 import Person_or_Agent from './components/Person_or_Agent.login.jsx';
 import LoadingScreen from './components/loading_screen.jsx';
-import { Agents } from './components/Agents.jsx';
+import  Agents  from './components/Agents.jsx';
 import CurrentLocation from './components/location.jsx';
 
 // Create a wrapper component for route transitions

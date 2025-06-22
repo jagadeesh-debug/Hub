@@ -25,13 +25,17 @@ export default function SlotBook() {
         fetchCities();
     }, []);
 
+    const goToAgentsPage = (city) => {
+        if (city) {
+            navigate("/agents", { state: { city } });
+        } else {
+            console.log("City not selected");
+        }
+    };
+
     const handleCitySelect = (event) => {
         const selectedCity = event.target.value;
-        if (selectedCity) {
-            navigate("/agents", { state: { city: selectedCity } });
-        } else {
-            console.log("Please select a city");
-        }
+        goToAgentsPage(selectedCity);
     };
 
     return (
@@ -56,17 +60,30 @@ export default function SlotBook() {
                     ))}
                 </select>
             </div>
-            <div className="w-full grid md:grid-cols-2   md:grid-rows-2 grid-rows-4 place-items-center">
-                <div className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer">
+
+            <div className="w-full grid md:grid-cols-2 md:grid-rows-2 grid-rows-4 place-items-center mt-5">
+                <div
+                    className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer"
+                    onClick={() => goToAgentsPage("Delhi")}
+                >
                     <img src={delhi} className="h-full w-full rounded-2xl" />
                 </div>
-                <div className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer">
+                <div
+                    className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer"
+                    onClick={() => goToAgentsPage("Hyderabad")}
+                >
                     <img src={hyderabad} className="h-full w-full rounded-2xl" />
                 </div>
-                <div className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer">
+                <div
+                    className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer"
+                    onClick={() => goToAgentsPage("visakhapatnam")}
+                >
                     <img src={vizag} className="h-full w-full rounded-2xl" />
                 </div>
-                <div className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer">
+                <div
+                    className="h-5/6 w-2/3 md:w-2/3 md:h-2/3 lg:h-3/4 rounded-2xl cursor-pointer"
+                    onClick={() => goToAgentsPage("Maharashtra")}
+                >
                     <img src={maharashtra} className="h-full w-full rounded-2xl" />
                 </div>
             </div>
