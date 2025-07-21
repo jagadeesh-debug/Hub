@@ -36,9 +36,7 @@ export default function Nav() {
                 <Link to="/home">
                     <button className="text-green-400 rounded-md flex-grow text-center px-2 py-1 hover:bg-green-400 hover:text-black hover:cursor-pointer">Home</button>
                 </Link>
-                <Link to="/How_we_work">
-                    <button className="text-green-400 rounded-md flex-grow text-center px-2 py-1 hover:bg-green-400 hover:text-black hover:cursor-pointer">How We Work</button>
-                </Link>
+              
                 <Link to="/bys">
                     <button className="text-green-400 rounded-md flex-grow text-center px-2 py-1 hover:bg-green-400 hover:text-black hover:cursor-pointer">Book Your Slot</button>
                 </Link>
@@ -60,9 +58,7 @@ export default function Nav() {
                     <Link to="/home" onClick={togglemenu}>
                         <button className="text-green-400 rounded-md flex-grow text-center hover:bg-green-400 hover:text-black hover:cursor-pointer">Home</button>
                     </Link>
-                    <Link to="/How_we_work" onClick={togglemenu}>
-                        <button className="text-green-400 rounded-md flex-grow text-center hover:bg-green-400 hover:text-black hover:cursor-pointer">How We Work</button>
-                    </Link>
+                 
                     <Link to="/bys" onClick={togglemenu}>
                         <button className="text-green-400 rounded-md flex-grow text-center hover:bg-green-400 hover:text-black hover:cursor-pointer">Book Your Slot</button>
                     </Link>
